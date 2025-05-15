@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>net8.0-windows</TargetFramework>
+	<Nullable>enable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<UseWPF>true</UseWPF>
+	<ApplicationIcon>resources/owl.ico</ApplicationIcon>
+	<AssemblyTitle>Proxy Checker</AssemblyTitle>
+	<AssemblyDescription>Proxy checker socks5/http</AssemblyDescription>
+	<AssemblyProduct>Proxy checker</AssemblyProduct>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProxyChecker.Domain\ProxyChecker.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
