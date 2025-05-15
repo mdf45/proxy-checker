@@ -14,8 +14,8 @@ namespace ProxyChecker.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string SelectedFilePath;
-        private bool Working;
+        private string _selectedFilePath;
+        private bool _working;
 
         public MainWindow()
         {
@@ -32,19 +32,19 @@ namespace ProxyChecker.Client
 
             if (dialog.ShowDialog() == true)
             {
-                SelectedFilePath = dialog.FileName;
-                FilePathTextBlock.Text = SelectedFilePath;
+                _selectedFilePath = dialog.FileName;
+                FilePathTextBlock.Text = _selectedFilePath;
             }
         }
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Working)
+            if (_working)
                 return;
 
             this.ProxyResultGrid.Items.Clear();
 
-            Working = true;
+            _working = true;
             this.LoadFileButton.IsEnabled = false;
             this.StartButton.IsEnabled = false;
 
@@ -60,7 +60,7 @@ namespace ProxyChecker.Client
             }
             finally
             {
-                Working = false;
+                _working = false;
                 this.LoadFileButton.IsEnabled = true;
                 this.StartButton.IsEnabled = true;
             }
@@ -71,14 +71,14 @@ namespace ProxyChecker.Client
             var proxyUtility = new ProxyUtility(this.FormatTextBox.Text, this.ProxyTypeComboBox.Text);
             var proxies = new List<WebProxy>();
 
-            if (string.IsNullOrEmpty(SelectedFilePath))
+            if (string.IsNullOrEmpty(_selectedFilePath))
             {
                 MessageBox.Show("Пожалуйста, выберите файл с прокси.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
                 return proxies;
             }
             try
             {
-                var lines = File.ReadAllLines(SelectedFilePath);
+                var lines = File.ReadAllLines(_selectedFilePath);
                 foreach (var line in lines)
                 {
                     var proxy = proxyUtility.ParseFromString(line);
