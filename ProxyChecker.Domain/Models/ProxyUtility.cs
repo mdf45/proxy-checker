@@ -16,6 +16,11 @@ namespace ProxyChecker.Domain.Models
         private readonly string _format;
         private readonly string _defType;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="format">type, ip, port, user, pass</param>
+        /// <param name="defType">default proxy type, if type not given</param>
+        /// <returns></returns>
         public ProxyUtility(string format, string defType = "http")
         {
             _format = format
@@ -29,11 +34,9 @@ namespace ProxyChecker.Domain.Models
         }
 
         /// <summary>
-        /// Parse proxy string to <c>IWebProxy</c>
+        /// Parse proxy string to <c>WebProxy</c>
         /// </summary>
         /// <param name="proxyStr"></param>
-        /// <param name="format">type, ip, port, user, pass</param>
-        /// <param name="defType"></param>
         /// <returns></returns>
         public WebProxy? ParseFromString(string proxyStr)
         {
